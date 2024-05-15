@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% block title %} Dashboard | Health Alert Application {% endblock %}
+
+{% block content %}
+<div class="col-10 bg-white">
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow p-3 m-3">
+                    <h2>Disease Report
+                        <div class="float-right h6"><b>Data:</b> {{startDate|date:"d M Y"}} - {{endDate|date:"d M Y"}} 
+                            {% if request.session.type == "admin" %}
+                            <a href="/sendSMStoAll/" class="btn btn-primary">SEND ALERT SMS</a> 
+                            {% endif %}
+                        </div>
+                    </h2>
+                    
+                    <table class="table table-striped table-bordered" style="width:100%" id="datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Pincode</th>
+                                <th scope="col">Disease</th>
+                                <th scope="col">Total Population</th>
+                                <th scope="col">Number of Reports</th>
+                                {% if request.session.type == "admin" %}
+                                <th scope="col">SEND SMS</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in data %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{x.pincode}}</td>
+                                <td>{{x.name}}</td>
+                                <td>{{x.publicCount}}</td>
+                                <td>{{x.maxCount}}</td>
+                                {% if request.session.type == "admin" %}
+                                <td><a href="/sendPincodeSMS/{{x.pincode}}/{{x.name}}" class="btn btn-primary">SEND SMS to {{x.pincode}}</a></form></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

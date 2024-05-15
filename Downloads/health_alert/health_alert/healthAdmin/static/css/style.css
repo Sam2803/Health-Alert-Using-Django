@@ -1,0 +1,63 @@
+
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+a{
+    color: #212529;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+.main{
+    padding-top:100px;  
+    padding-bottom:50px;  
+}
+
+/*Sidebar*/
+.sidebar{
+    height:100vh;
+}
+
+.sidebar ul{
+    padding-top:100px;
+    padding-left: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.sidebar a{
+    color: #fff!important;
+    transition: all 0.3s;
+}
+
+.sidebar li{
+    transition: all 0.3s;
+}
+
+.sidebar li:hover{
+    background-color: #f8f9fa !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.sidebar li:hover a{
+    color: #212529!important;
+}
+
+/*Changing Color of Datatable Pagination*/
+.page-link{
+    color: #DC3545!important;
+}
+
+.page-item.active .page-link {
+    background-color: #DC3545;
+    border-color: #DC3545;
+    color: #fff!important;
+}

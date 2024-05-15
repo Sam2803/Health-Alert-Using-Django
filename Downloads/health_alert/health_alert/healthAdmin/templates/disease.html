@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+
+{% block title %} Disease | Health Alert Application {% endblock %}
+
+{% block content %}
+<div class="col-10 bg-white">
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow p-3 m-3">
+                    <h2>Add Disease</h2>
+                    <form method="POST"> {% csrf_token %}
+                        {% if saveSuccess == True %}
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Congrats!</strong> Disease added successfully.
+                        </div>
+                        {% endif %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name of the Disease">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputCure">Cure</label>
+                                <textarea class="form-control" rows="5" name="cure" id="inputCure" placeholder="Cure"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputPrecaution">Precautions</label>
+                                <textarea class="form-control" rows="5" name="precautions" id="inputPrecaution" placeholder="Precautions"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputSymptoms">Symptoms</label>
+                                <textarea class="form-control" rows="5" name="symptoms" id="inputSymptoms" placeholder="Symptoms"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Add Disease</button>
+                    </form>
+                </div>
+                <div class="card shadow p-3 m-3">
+                    <h2>Edit Disease Data</h2>
+                    <table class="table table-striped table-bordered" style="width:100%" id="datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Cure</th>
+                                <th scope="col">Precaution</th>
+                                <th scope="col">Symptoms</th>                                            
+                                <th scope="col">Opertations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in data %}
+                            <tr>
+                                <th scope="row">{{x.pk}}</th>
+                                <td>{{x.name}}</td>
+                                <td>{{x.cure}}</td>
+                                <td>{{x.precautions}}</td>
+                                <td>{{x.symptoms}}</td>
+                                <td><a href="delete/{{x.pk}}"><i class="fas fa-trash-alt text-danger px-1"></i></a> <a href="edit/{{x.pk}}"><i class="fas fa-pencil-alt text-dark px-1"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

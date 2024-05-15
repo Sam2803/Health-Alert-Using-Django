@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+
+{% block title %} Edit Clinic | Health Alert Application {% endblock %}
+
+{% block content %}
+<div class="col-10 bg-white">
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow p-3 m-3">
+
+                    <h2>Edit Clinic</h2>
+                    {% for x in data %}
+                    <form method="POST"> {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control" value="{{x.name}}" name="name" id="inputName"
+                                    placeholder="Clinic Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="doctorName">Doctor Name</label>
+                                <input type="text" class="form-control" value="{{x.doctorname}}" name="doctorname" id="doctorName"
+                                    placeholder="Doctor Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="doctorName">Doctor Qualification</label>
+                                <input type="text" class="form-control" name="doctorqualification" value="{{x.doctorqualification}}"
+                                    id="doctorqualification" placeholder="Doctor Qualification">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="inputAddress">Address</label>
+                                <textarea type="text" class="form-control" name="address" id="inputAddress"
+                                    placeholder="1234 Main St">{{x.address}}</textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputZip">Zip</label>
+                                <input type="number" class="form-control" name="zipcode" id="inputZip"  value="{{x.zipcode}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" name="email" id="inputEmail4" value="{{x.email}}"
+                                    placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputPassword4">Password</label>
+                                <input type="password" class="form-control" name="password" id="inputPassword4" value="{{x.password}}"
+                                    placeholder="Password">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Save Changes</button>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

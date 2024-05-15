@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>{% block title %} {% endblock %}</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/font/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <a class="navbar-brand" href="#"><img src="/static/img/logo.png" alt="" srcset="" height="50px"></a>
+        <a href="/logout/" class="btn btn-danger ml-auto">Logout</a>
+    </nav>
+    <div class="bg-danger">
+        <div class="row">
+            <div class="col-2">
+                <div class="sidebar sticky-top">
+                    <ul>
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/dashboard/"><i
+                                    class="fas fa-tachometer-alt pr-2"></i> Dashboard</a></li>
+                        <!--Admin-->
+                        {% if request.session.type == 'admin' %}
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/clinic/"><i
+                                    class="fas fa-clinic-medical pr-2"></i> Clinics</a></li>
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/disease/"><i class="fas fa-bug pr-2"></i>
+                                Diseases</a></li>
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/adminManager/"><i class="fas fa-users pr-2"></i>
+                                Admins</a></li>
+                        {% endif %}
+                        <!--Clinic-->
+                        {% if request.session.type == 'clinic' %}
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/patients/"><i class="fas fa-users pr-2"></i> Patients</a>
+                        </li>
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/consultation/"><i class="fas fa-notes-medical pr-2"></i>
+                                Consultations</a></li>
+                        {% endif %}
+                        <!--Common Bottom-->
+                        <li class="p-2 rounded-lg my-1 mx-2"><a href="/changePassword/"><i class="fas fa-key pr-2"></i> Change
+                                Password</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            {% block content %} {% endblock %}
+
+        </div>
+    </div>
+
+    <!-- <footer class="bg-dark fixed-bottom p-2 text-center text-white">
+        This is Footer
+    </footer> -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="/static/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>
